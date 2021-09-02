@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: grafana-pdb
+spec:
+  selector:
+    matchLabels:
+       app: grafana
+  maxUnavailable: {{ .Values.maxUnavailable }}
