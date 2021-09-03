@@ -1,0 +1,63 @@
+---
+  - name: install package dependecies
+    shell:
+      cmd: apt -y install vim bash-completion wget
+      warn: False
+
+  - name: Download Postgres Repo
+    shell:
+      cmd: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+      warn: False
+
+
+  - name: update postgres-13 repo
+    shell:
+      cmd: echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+      warn: False
+
+  - name: update packages
+    shell:
+      cmd: apt update
+      warn: False
+
+  - name: install postgres-13
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - postgresql
+      - postgresql-contrib
+
+  - name: stop postgres service
+    service:
+      name: postgresql
+      state: stopped
+
+  - name: create postgres data_directory
+    file:
+      path: /datadrive/postgres_data
+      state: directory
+      owner: postgres
+      group: postgres
+
+  - name: sync postgres data
+    shell:
+      cmd: rsync -avzh /var/lib/postgresql /datadrive/postgres_data
+      warn: False      
+
+  - name: Backup postgres data
+    shell:
+      cmd: mv /var/lib/postgresql/13/main /var/lib/postgresql_backup
+      warn: False
+
+  - name: update postgres.conf file
+    copy:
+      src: files/postgresql.conf
+      dest: /etc/postgresql/13/main
+
+  - name: start postgres service
+    service:
+      name: postgresql
+      state: started
+ 
+  

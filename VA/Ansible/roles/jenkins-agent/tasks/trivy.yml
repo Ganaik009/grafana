@@ -1,0 +1,9 @@
+---
+  - name: Download trivy deb Package
+    get_url:
+      url: https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+      dest: /tmp
+
+  - name: Install Trivy
+    shell:
+      cmd: dpkg -i /tmp/trivy_0.18.3_Linux-64bit.deb

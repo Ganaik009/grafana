@@ -1,0 +1,5 @@
+---
+  - name: install ant
+    apt:
+      name: ant
+      state: latest

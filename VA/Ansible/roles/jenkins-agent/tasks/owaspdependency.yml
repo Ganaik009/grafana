@@ -1,0 +1,28 @@
+---
+- name: Delete previously unpacked /opt/dependency-check
+  file:
+    path: /opt/dependency-check
+    state: absent
+  become: yes
+
+- name: "Download dependency-check-{{ dependency_check_version }}-release.zip"
+  get_url:
+    url: "https://github.com/jeremylong/DependencyCheck/releases/download/v{{ dependency_check_version }}/dependency-check-{{ dependency_check_version }}-release.zip"
+    dest: /opt/dc.zip
+  become: yes
+
+- name: Extract dc.zip into /opt/dependency-check
+  unarchive:
+    src: /opt/dc.zip
+    dest: /opt
+    remote_src: yes
+  become: yes
+
+- name: Recursively change ownership of a directory /opt/dependency-check
+  file:
+    path: /opt/dependency-check
+    state: directory
+    recurse: yes
+    owner: Jenkins
+    group: Jenkins
+  become: yes

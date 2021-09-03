@@ -1,0 +1,5 @@
+---
+  - name: install yarn
+    apt:
+      name: yarn
+      state: latest

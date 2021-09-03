@@ -1,0 +1,20 @@
+---
+  - name: Download Jenkin repo
+    shell:
+      cmd: wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+      warn: False
+
+  - name: Download Jekins PKG
+    shell:
+      cmd: sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+      warn: False
+
+  - name: Update packages
+    shell:
+      cmd: apt update
+      warn: False
+
+  - name: install Jenkins
+    apt:
+      name: jenkins
+      state: latest

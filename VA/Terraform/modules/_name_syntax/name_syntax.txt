@@ -1,0 +1,16 @@
+# terraform {
+#   required_version = ">= 0.13.0"
+# }
+
+# resource "local_file" "main_rg" {
+#   content     = "${var.main_rg_name}-${var.main_region_prefix}"
+#   filename    = "${path.root}/main_rg.txt"
+# }
+# resource "local_file" "network_rg" {
+#   content     = "${var.network_rg_name}-${var.main_region_prefix}"
+#   filename    = "${path.root}/network_rg.txt"
+# }
+# resource "local_file" "utilities_rg" {
+#   content     = "${var.utilities_rg_name}-${var.main_region_prefix}"
+#   filename    = "${path.root}/utilities_rg.txt"
+# }
