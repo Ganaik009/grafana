@@ -1,4 +1,0 @@
----
-- name: install postgres-13
-  include_tasks: postgres.yml
-

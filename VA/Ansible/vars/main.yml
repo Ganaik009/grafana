@@ -1,7 +1,0 @@
----
-postgres_db_user: postgres
-postgres_db_name: postgres
-postgres_db_password: postgres
-
-update_apt_cache: true
-dependency_check_version: 6.2.0

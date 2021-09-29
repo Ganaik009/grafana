@@ -1,4 +1,0 @@
----
-
-- name: Install Pa11y
-  npm: name=pa11y global=yes

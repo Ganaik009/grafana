@@ -1,4 +1,0 @@
----
-
-- name: Install Lighthouse
-  npm: name=lighthouse global=yes

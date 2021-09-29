@@ -1,6 +1,0 @@
-checkout()
-mavenbuild()
-owasp_dependency_check()
-sonarqube()
-upload_artifacts()
-deploy_dev()

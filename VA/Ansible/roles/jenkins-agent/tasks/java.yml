@@ -1,6 +1,0 @@
----
-  - name: install open-JDK
-    apt:
-      name: openjdk-8-jdk
-      state: latest
-
